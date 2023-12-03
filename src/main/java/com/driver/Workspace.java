@@ -5,6 +5,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class Workspace extends Gmail{
 
@@ -30,6 +31,8 @@ public class Workspace extends Gmail{
         // Example: If a meeting ends at 10:00 am, you cannot attend another meeting starting at 10:00 am
     	
     	ArrayList<Meeting> curr = new ArrayList<>(calendar);
+    	
+    	Collections.sort(curr, Comparator.comparing(Meeting::getStartTime));
     	
     	LocalTime prevS = curr.get(0).getStartTime();
         LocalTime prevE = curr.get(0).getEndTime();
